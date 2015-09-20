@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :pins
   resources :users
-  match 'home' => 'users#index' , via:[:get, :post]
+  #match 'home' => 'users#index' , via:[:get, :post]
+  root 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
