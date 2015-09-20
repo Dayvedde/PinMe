@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :pins
   resources :users
   match 'home' => 'users#index' , via:[:get, :post]
