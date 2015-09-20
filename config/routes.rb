@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :pins
   resources :users
-  get 'user/index'
   match 'home' => 'users#index' , via:[:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
