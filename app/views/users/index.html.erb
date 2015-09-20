@@ -21,11 +21,26 @@
   float:right;
   margin: 10px;
 }
+
+.styledButton{
+  background: rgb;
+}
+
 </style>
 
 <p id="notice"><%= notice %></p>
 <div class='home_container'>
   <div class='home_side_bar'>
+     <form>
+    Place:
+    <input type="text" name="place_title">
+    <br /><br />
+    Description:
+    <input type="text" name="detail of desired place">
+    <br /><br />
+  </form>
+
+  <button class="styledButton" type="button">Pin Me</button>
     <button type="button" class="btn btn-success">Pin me!</button>
   </div>
   <div class='home_map'>
@@ -54,3 +69,4 @@ function displayOnMap(position){
 };
 
 </script>
+
