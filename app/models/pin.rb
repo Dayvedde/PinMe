@@ -4,5 +4,5 @@ class Pin < ActiveRecord::Base
 	validates :latitude, presence: true
 	validates :longitude, presence:true
 	validates :description, length: {maximum: 100}
-	validates :title, length{maximum: 20}
+	validates :title, length: {maximum: 20}
 end

@@ -15,6 +15,7 @@ class PinsController < ApplicationController
   # GET /pins/new
   def new
     @pin = Pin.new
+    1.times { @pin.title.build }
   end
 
   # GET /pins/1/edit
