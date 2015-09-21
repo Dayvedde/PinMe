@@ -52,3 +52,5 @@ end
 
 
 gem 'mocha', group: :test
+gem 'puma'
+ruby "2.2.1"
