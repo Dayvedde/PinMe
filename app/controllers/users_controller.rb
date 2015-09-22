@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.new
+    @pin = Pin.new
     # @hash = Gmaps4rails.build_markers(@users) do |user, marker|
     #   marker.lat user.latitude
     #   marker.lng user.longitude
