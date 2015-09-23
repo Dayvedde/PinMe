@@ -65,6 +65,14 @@
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'gmap'}}, function(){
+
+      google.maps.event.addListener(handler.getMap(),"zoom_changed", function(){
+
+        alert("hi");
+
+      });
+
+
       //Set the current coordinates in text box
       if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(position){
@@ -94,6 +102,9 @@
     handler.map.centerOn(marker);
     handler.fitMapToBounds();
   };
+
+
+  
   
   // function initialize() {
   //   var styleArray = [
