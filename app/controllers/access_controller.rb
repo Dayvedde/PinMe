@@ -1,4 +1,8 @@
 class AccessController < ApplicationController
+
+	before_action :confirm_logged_in, 
+		:except => [:login, :attempt_login, :logout]
+
 	def index
 		#display text and links
 	end
@@ -15,8 +19,12 @@ class AccessController < ApplicationController
 			end
 		end
 		if authorized_user
+			# Remember saved user in session
+			session[:user_id] = authorized_user.id
+			session[:username] = authorized_user.username
+
 			flash[:notice] = "Logged in successfully"
-			redirect_to(:action => 'index')
+			redirect_to(:controller => 'users', :action => 'index')
 		else
 			flash[:notice] = 'Invalid username/password'
 			redirect_to(:action => 'login')
@@ -25,6 +33,10 @@ class AccessController < ApplicationController
 
 	def logout
 		# mark user as logged out
+		# Remember saved user in session
+		session[:user_id] = nil
+		session[:username] = nil
+
 		flash[:notice] = 'Logged out'
 		redirect_to(:action => 'login')
 	end
