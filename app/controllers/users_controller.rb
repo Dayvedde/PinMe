@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :confirm_logged_in, :except => [:new]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -78,4 +79,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password, :email, :phone_number)
     end
+
 end
