@@ -1,56 +1,24 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: #B4CDCD;
-$container-width: 100%;
-$home_mapwidth: 70%;
-
-.container {
-  width: container-width;
-  height: 600px;
-  background-color: primary-color;
+.home_container{
+  width:100%;
+  height:600px;
+  background-color: #B4CDCD;
 }
-
-.home_map {
-  height: container-width;
-  width: home_mapwidth;
-  float: right;
+.home_map{
+  height:100%;
+  width:70%;
+  float:right;
 }
-
-.home_side_bar {
-  display: inline-block;
+.home_side_bar{
+  display:inline-block;
   margin: 5px;
 }
-
-#gmap {
+#gmap{
   height:95%;
   width:70%;
-  float:right:
+  float:right;
   margin: 10px;
 }
 
-html,
-body,
-ul,
-ol {
-   margin: 0;
-  padding: 0;
-}
-.message {
-  border: 1px solid #ccc;
-  padding: 10px;
-  color: #333;
-}
-
-.success {
-  @extend .message;
-  border-color: green;
-}
-
-.error {
-  @extend .message;
-  border-color: red;
-}
-
-.warning {
-  @extend .message;
-  border-color: yellow;
+.styledButton{
+  background: rgb;
 }
