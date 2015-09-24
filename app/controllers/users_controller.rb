@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @pin = Pin.new
     @user_pins = @user.pins
-    binding.pry
     # @hash = Gmaps4rails.build_markers(@users) do |user, marker|
     #   marker.lat user.latitude
     #   marker.lng user.longitude
