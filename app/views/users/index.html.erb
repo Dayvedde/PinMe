@@ -48,7 +48,8 @@
         class: 'pin_form_long' 
       %><br/>
       <%= pin_form.text_field :user_id,     
-        :placeholder => 'User ID' 
+        :placeholder => 'User ID',
+        :value => @user.id
       %><br/>
       <%= pin_form.submit 'Pin Me' , class: 'btn btn-success' %>
     <% end %>
@@ -64,6 +65,14 @@
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'gmap'}}, function(){
+
+      google.maps.event.addListener(handler.getMap(),"zoom_changed", function(){
+
+        //alert("hi");
+
+      });
+
+
       //Set the current coordinates in text box
       if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(position){
@@ -304,4 +313,39 @@
       {name: "Styled Map"});
 };
 
+
+  };
+
+
+  
+  
+  // function initialize() {
+  //   var styleArray = [
+  //   {
+  //     featureType: "all",
+  //     stylers: [
+  //       { saturation: 40 }
+  //     ]
+  //   }, {
+  //     featureType: "landscape", 
+  //     elementType: "geometry",
+  //     stylers: [
+  //       { hue: "#2E2E2E" }
+  //     ]
+  //   }, {
+  //     featureType: "road.arterial",
+  //     elementType: "geomtry", 
+  //     stylers: [
+  //       { hue: "#FE2EF7" }
+  //     ]
+  //   }, {
+  //     featureType: "water", 
+  //     elementType: "geometry", 
+  //     stylers: [
+  //       { hue: "#00ffee" }
+  //     ]
+  //   }
+  //   ] 
+  //   var styledMap = new google.maps.StyledMapType(styles,
+  //     {name: "Styled Map"});
 </script>
