@@ -8,7 +8,8 @@
 <p id="notice"><%= notice %></p>
 <div class='home_container'>
   <div class='home_side_bar'>
-    <%= form_for @pin do |pin_form| %>
+    <%= form_for @pin, :html => {:class => "user_pin_form"} do |pin_form|
+    %>
       <%= pin_form.text_field :title,       :placeholder => 'Title' %><br/>
       <%= pin_form.text_field :description, 
         :placeholder => 'Description', 
@@ -28,11 +29,29 @@
       %><br/>
       <%= pin_form.submit 'Pin Me' , class: 'btn btn-success' %>
     <% end %>
+
+    <table class="user_pins table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @user_pins.each do |user_pin| %>
+          <tr>
+            <td><%= user_pin.title %></td>
+            <td><%= link_to 'Destroy', :confirm => 'Are you sure?', :method => :delete   %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>  
 
-  <div class='home_map'>
-    <div id="gmap"></div>
-  </div>
+  <div class='home_map map_contrainer'>
+    <div id="gmap" class="map_canvas"></div>
+    </div>
 </div>
 
 <script type="text/javascript">
