@@ -2,6 +2,8 @@
 
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 
+<link rel='shortcut icon' href="app/assets/images/PinMe_Favicon.png">
+
 <%= stylesheet_link_tag "users" %>
 
 
@@ -78,33 +80,6 @@
     handler.fitMapToBounds();
 
     var myStyle = [
-      /* {
-        featureType: "all",
-        stylers: [
-          { saturation: 40 }
-        ]
-      }, 
-      {
-        featureType: "landscape", 
-        elementType: "geometry",
-        stylers: [
-          { hue: "#2E2E2E" }
-        ]
-      }, 
-      {
-        featureType: "road.arterial",
-        elementType: "geomtry", 
-        stylers: [
-          { hue: "#FE2EF7" }
-        ]
-      }, 
-      {
-        featureType: "water", 
-        elementType: "geometry", 
-        stylers: [
-          { hue: "#00ffee" }
-        ]
-      } */
       {
         "featureType": "all",
         "elementType": "labels.text.fill",
@@ -286,6 +261,6 @@
     );
     var styledMap = new google.maps.StyledMapType(styles,
       {name: "Styled Map"});
-};
+  };
   </script>
 
