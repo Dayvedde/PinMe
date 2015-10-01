@@ -1,6 +1,7 @@
 (function ($){
 	$.maps = {
 		userPos: null,
+		currentDest: null,	//Store the current pin user selected
 		styles: [
 	         {
           "featureType":"all",
@@ -129,31 +130,46 @@
 						navigator.geolocation.getCurrentPosition(function(position){
 						  var latitude = position.coords.latitude;
 						  var longitude = position.coords.longitude;
-						  $.maps.userPos = {x: latitude, y: longitude};
-
-						  console.log($.maps.userPos)
-						  console.log($.maps.map)
 
 						  $('.pin_form_lat').val(latitude);
 						  $('.pin_form_long').val(longitude);
 
-						  markers = $.maps.addMarker(latitude, longitude);
-						  $.maps.map.bounds.extendWith(markers);
+						  $.maps.userPos = $.maps.createMarker(latitude, longitude, "You are here");
+						  console.log($.maps.userPos);
+						  $.maps.map.bounds.extendWith($.maps.userPos);
 						  $.maps.map.fitMapToBounds();
 						})
 					}
 				});
 		},
-		addMarker: function(latitude, longitude){
-			markers = $.maps.map.addMarkers([
+		createMarker: function(latitude, longitude, info){
+			marker = $.maps.map.addMarkers([
 				{
 					lat: latitude,
 					lng: longitude,
-					infowindow: "Hello"
+					infowindow: info
 				}
 			]);
-			console.log(markers);
-			return markers;
+			return marker;
+		},
+		getRoute: function(){
+			userLat = $.maps.userPos[0].serviceObject.position.A;
+			userLng = $.maps.userPos[0].serviceObject.position.F;
+			destLat = $.maps.currentDest[0].serviceObject.position.A;
+			destLng = $.maps.currentDest[0].serviceObject.position.F;
+
+			var origin = new google.maps.LatLng(userLat, userLng);
+			var destination = new google.maps.LatLng(destLat, destLng);
+			var request = {
+				origin: origin,
+				destination: destination,
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			directionsService.route(request, function(response, status){
+				if (status == google.maps.DirectionsStatus.OK){
+					directionsDisplay.setDirections(response);
+				}
+			});
 		}
 	};
 

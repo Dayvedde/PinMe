@@ -42,8 +42,8 @@
 
       <tbody>
         <% @user_pins.each do |user_pin| %>
-          <tr>
-            <td><%= user_pin.title %></td>
+          <tr class="user_pins_row" id="pin_<%= user_pin.id %>" data-lat="<%= user_pin.latitude %>" data-lng="<%= user_pin.longitude %>">
+            <td><a href="javascript:void(0)"><%= user_pin.title %></a></td>
             <td><%= link_to 'Destroy', :confirm => 'Are you sure?', :method => :delete   %></td>
           </tr>
         <% end %>
@@ -60,6 +60,11 @@
 // document ready runs these commands once the page loads
   $(document).ready(function(){
     $.maps.init();
+    $('.user_pins_row').on('click', function(){
+      $.maps.currentDest = $.maps.createMarker($(this).data("lat"), $(this).data('lng'), "destination");
+      console.log("Cur dest: ", $.maps.currentDest);
+      
+    });
   });
 </script>
 
