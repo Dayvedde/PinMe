@@ -1,3 +1,9 @@
-function test (){
-	alert("hello");
-}
+(function ($){
+	$.maps = {
+		init: function(){
+
+		},
+
+	};
+
+})(jquery);
