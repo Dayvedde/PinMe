@@ -136,8 +136,6 @@
 
 						  $.maps.userPos = $.maps.createMarker(latitude, longitude, "You are here");
 						  console.log($.maps.userPos);
-						  $.maps.map.bounds.extendWith($.maps.userPos);
-						  $.maps.map.fitMapToBounds();
 						})
 					}
 				});
@@ -150,6 +148,8 @@
 					infowindow: info
 				}
 			]);
+			$.maps.map.bounds.extendWith(marker);
+		  	$.maps.map.fitMapToBounds();
 			return marker;
 		},
 		getRoute: function(){
@@ -157,6 +157,9 @@
 			userLng = $.maps.userPos[0].serviceObject.position.F;
 			destLat = $.maps.currentDest[0].serviceObject.position.A;
 			destLng = $.maps.currentDest[0].serviceObject.position.F;
+
+			var directionsDisplay  = new google.maps.DirectionsRenderer();
+			var directionsService = new google.maps.DirectionsService();
 
 			var origin = new google.maps.LatLng(userLat, userLng);
 			var destination = new google.maps.LatLng(destLat, destLng);
@@ -170,6 +173,10 @@
 					directionsDisplay.setDirections(response);
 				}
 			});
+			directionsDisplay.setMap($.maps.map.getMap());
+			// $.maps.map.buildMap({internal: {id: 'gmap'}}, function(){
+			// 	directionsDisplay.setMap($.maps.map.getMap()):
+			// });
 		}
 	};
 
