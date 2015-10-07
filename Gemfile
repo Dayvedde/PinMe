@@ -26,7 +26,7 @@ gem 'rails_12factor', '~> 0.0.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'gmaps4rails'
 gem 'pry-byebug'
-
+gem 'twilio-ruby'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
