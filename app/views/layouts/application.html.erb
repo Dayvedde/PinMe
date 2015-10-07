@@ -18,7 +18,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Pin me</a>
+	      <a class="navbar-brand" href="/">Pin me</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,20 @@
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><%= link_to 'Sign up', new_user_path %></li>
+	      	<% session[:user_id] %>
+	        <li><%= link_to_if(session[:user_id].nil?, 'Sign up', new_user_path) do
+	        			link_to session[:username]
+	        		end
+	        	%>
+	    	</li>
+
+	        <li><%= link_to_if(session[:user_id].nil?, 'Login', 
+	        				{:controller => :access, :action => :login }) do
+	        			link_to 'Logout', :controller => :access, :action=> :logout
+	        		end
+	         	%>
+	     	</li>
+
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
