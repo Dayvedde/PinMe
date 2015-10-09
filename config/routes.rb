@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   #twilio
   post 'twilio/voice' => 'twilio#voice'
+  post 'messages/notify' => 'messages#notify'
 
 end

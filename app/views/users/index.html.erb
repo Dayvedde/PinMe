@@ -10,9 +10,9 @@
 <p id="notice"><%= notice %></p>
 <div class='home_container'>
   <div class='home_side_bar'>
-    <%= form_for @pin, :html => {:class => "user_pin_form"} do |pin_form|
+    <%= form_for @pin, remote:true, :html => {:class => "user_pin_form"} do |pin_form|
     %>
-      <%= pin_form.text_field :title,       :placeholder => 'Title' %><br/>
+      <%= pin_form.text_field :title, :placeholder => 'Title' %><br/>
       <%= pin_form.text_field :description, 
         :placeholder => 'Description', 
         class: 'pin_form_desc' 
@@ -24,10 +24,6 @@
       <%= pin_form.text_field :longitude,   
         :placeholder => 'Longitude', 
         class: 'pin_form_long' 
-      %><br/>
-      <%= pin_form.text_field :user_id,     
-        :placeholder => 'User ID',
-        :value => @user.id
       %><br/>
       <%= pin_form.submit 'Pin Me' , class: 'btn btn-success' %>
     <% end %>
@@ -44,11 +40,15 @@
         <% @user_pins.each do |user_pin| %>
           <tr class="user_pins_row" id="pin_<%= user_pin.id %>" data-lat="<%= user_pin.latitude %>" data-lng="<%= user_pin.longitude %>">
             <td class="user_pins_title"><a href="javascript:void(0)"><%= user_pin.title %></a></td>
-            <td><%= link_to 'Destroy', :confirm => 'Are you sure?', :method => :delete   %></td>
+            <td><%= link_to 'Destroy', user_pin,
+              :confirm => 'Are you sure?', :method => :delete , :remote => true %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <div class='text-button'>
+      <button><%= link_to "Text me", :controller => 'messages', :action => :notify , :method => :post, :remote => true %></button>
+    </div>
   </div>  
 
   <div class='home_map map_contrainer'>
