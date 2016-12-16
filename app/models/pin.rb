@@ -1,4 +1,4 @@
-class Pin < ActiveRecord::Base
+class Pin < ApplicationRecord
 	belongs_to :user
 
 	validates :latitude, presence: true
